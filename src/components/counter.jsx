@@ -21,9 +21,24 @@ class Counter extends Component {
   doHandleIncrement = () =>{
     this.handleIncrement({id: 1})
   }
+  componentDidUpdate(prevProps,prevState){
+    console.log('prevProps', prevProps);
+    console.log('prevState', prevState);
+    if(prevProps.counter.value !== this.props.counter.value){
+      console.log('Call update data for',this.props.counter.id)
+    }
+  }
 
+  componentWillUnmount(){
+    console.log('UNMOUNTed');
+    if (this.props.counter === null){
+      console.log(this.props.counter.id, 'is uunmounted')
+    }
+    //Perfect place to do variable cleanup otherwise memory leaks will be present!
+  }
   render() {
-    console.log('props',this.props)//Each react componenet has a property called props which is a plain js object that includes all attributs
+    console.log('counter rendered')
+    //console.log('props',this.props)//Each react componenet has a property called props which is a plain js object that includes all attributs
     return (
       <React.Fragment>
         <h4>{this.props.id}</h4>

@@ -12,6 +12,20 @@ class App extends Component {
       { id: 4, value: 0 },
     ],
   };
+  
+  constructor(){
+    super();
+    console.log('appconstructor')
+  }
+
+  componentDidMount(){
+    //Ajax call
+    console.log('app mounted')
+  }//perfect place to make ajax calls to get data from the server
+
+
+  
+
   handleDelete = (counterId) => {
     console.log("Event Handler to delete called", counterId);
     const counters = this.state.counters.filter((c) => c.id !== counterId);
@@ -33,6 +47,7 @@ class App extends Component {
     this.setState({ counters });
   };
   render() {
+    console.log('app rendered');
     return (
       <React.Fragment>
         <NavBar totalCounters = {this.state.counters.filter(c=>c.value>0).length}/>
